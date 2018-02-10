@@ -24,8 +24,8 @@ pipeline {
 			steps {
 				sh '''pwd'''
 				sh 'mvn tomcat7:undeploy'
-				sh 'mvn clean'
-				sh 'mvn tomvat7:deploy -Dmaven.test.skip=true'
+				sh 'mvn cleac'
+				sh 'mvn tomcat7:deploy -Dmaven.test.skip=true'
 			}
 		}
 	}
