@@ -16,7 +16,7 @@ pipeline {
 					source=$(pwd)/"Angular/public/"
 
 					cd $target && ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
-					cd $source ls | xargs -I {} cp -r {} $target
+					cd $source && ls | xargs -I {} cp -r {} $target
 					'''
 			}
 		}
