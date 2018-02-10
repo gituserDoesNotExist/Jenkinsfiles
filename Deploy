@@ -7,21 +7,25 @@ pipeline {
 				git url: 'https://github.com/gituserDoesNotExist/game-portal.git'
 			}
 		}
-		stage('test stage') {
+		stage('copy files to WebContent') {
 			steps {
 				sh '''echo "hello world"
-					pwd
 					root=$(pwd)
 					target=$root/"WebContent"
 					cd ..
 					source=$(pwd)/"Angular/public/"
 
-					cd $target
-					ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
-
-					cd $source
-					ls | xargs -I {} cp -r {} $target
+					cd $target && ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
+					cd $source ls | xargs -I {} cp -r {} $target
 					'''
+			}
+		}
+		stage('deploy') {
+			steps {
+				sh '''pwd'''
+				sh 'mvn tomcat7:undeploy'
+				sh 'mvn clean'
+				sh 'mvn tomvat7:deploy -Dmaven.test.skip=true'
 			}
 		}
 	}
