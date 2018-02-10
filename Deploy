@@ -20,8 +20,8 @@ pipeline {
 					ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
 
 					cd $source
-					ls
-				'''
+					ls | xargs -I {} cp -r {} $target
+					'''
 			}
 		}
 	}
