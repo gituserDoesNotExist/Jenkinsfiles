@@ -2,9 +2,23 @@ pipeline {
 	agent any
 	
 	stages {
+		stage('checkout') {
+			steps {
+				git url: 'https://github.com/gituserDoesNotExist/game-portal.git'
+			}
+		}
 		stage('test stage') {
 			steps {
-				sh 'echo "hello world"'
+				sh '''echo "hello world"
+					pwd
+					root=$(pwd)
+					target=$root/"WebContent"
+					cd ..
+					source=$root/"Angular/public/index.html"
+					echo $root
+					echo $target
+					echo $source
+				'''
 			}
 		}
 	}
