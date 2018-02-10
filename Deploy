@@ -14,10 +14,13 @@ pipeline {
 					root=$(pwd)
 					target=$root/"WebContent"
 					cd ..
-					source=$root/"Angular/public/index.html"
-					echo $root
-					echo $target
-					echo $source
+					source=$root/"Angular/public/"
+
+					cd $target
+					find . -maxdepth 1 -not -name "META-INF" -not -name "WEB-INF" -name "*" | xargs -I {} rm -r {}
+
+					cd $source
+					find . -name "*" | xargs -I {} cp -r {} $target
 				'''
 			}
 		}
