@@ -13,7 +13,7 @@ pipeline {
 					root=$(pwd)
 					target=$root/"WebContent"
 					cd ..
-					source=$(pwd)/"Angular/public/"
+					source=$(pwd)/"Angular/dist/"
 
 					cd $target && ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
 					cd $source && ls | xargs -I {} cp -r {} $target
