@@ -15,7 +15,9 @@ pipeline {
 					cd ..
 					source=$(pwd)/"Angular/dist/"
 
-					cd $target && ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
+					cd $target
+					ls --ignore "META-INF" --ignore "WEB-INF"
+					ls --ignore "META-INF" --ignore "WEB-INF" | xargs -I {} rm -r {}
 					cd $source && ls | xargs -I {} cp -r {} $target
 					'''
 			}
